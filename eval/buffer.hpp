@@ -17,15 +17,30 @@ public:
 		size_t bytes = count * sizeof(float);
 		bytes = ((bytes + alignment - 1) / alignment) * alignment; //integer division makes it correct
 		p_ = static_cast<float*>(std::aligned_alloc(bytes, alignment));
+		n_ = count;
 	}
 
-	~AlignedBuffer();
+	~AlignedBuffer() { std::free(p_); }
 
 	AlignedBuffer(const AlignedBuffer&) = delete;
 	AlignedBuffer operator=(const AlignedBuffer&) = delete;
 
-	AlignedBuffer(AlignedBuffer&&) noexcept;
-	AlignedBuffer& operator=(AlignedBuffer&&) noexcept;
+	AlignedBuffer(AlignedBuffer&& obj) noexcept : p_(obj.p_), n_(obj.n_) {
+		obj.p_ = nullptr; obj.n_ = 0; //without obj.p_ being nullified we woud wipe the new object!
+	}
+	AlignedBuffer& operator=(AlignedBuffer&& obj) noexcept {
+		if (&obj != this) {
+			p_ = obj.p_;
+			n_ = obj.n_;
+			p_ = nullptr;
+			n_ = 0;
+		}
+		return *this; //dereference and return the object, not the ptr
+	}
+
+	float* data() { return p_; }
+	const float* data() const { return p_; } //read only
+	const size_t size() const { return n_; } //read only
 
 private:
 	float* p_ = nullptr;
@@ -35,7 +50,5 @@ private:
 struct Buffers {
 	AlignedBuffer A, B, C, Cref;
 };
-
-
 
 #endif //GEMM_KERNEL_ARM_BUFFER_HPP
