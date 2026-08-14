@@ -62,10 +62,13 @@ void fill_buffers(const Problem& problem, Buffers& buffers, uint64_t seed) {
 
 bool compare(const Problem& problem, const float* C, const float* Cref,
 	double& max_abs, double& max_rel) {
+	size_t bad_c = 0;
 
 	max_abs = 0.0f; max_rel = 0.0f;
 	for (size_t i = 0; i < problem.M; ++i) {
 		for (size_t j = 0; j < problem.N; ++j) {
+
+			if (!std::isfinite(C[i * problem.ldc + j])) {bad_c ++;}
 
 			double c = C[i * problem.ldc + j];
 			double cref = Cref[i * problem.ldc + j];
@@ -79,7 +82,7 @@ bool compare(const Problem& problem, const float* C, const float* Cref,
 	}
 
 	double tolerance = std::numeric_limits<float>::epsilon() * problem.K * 8.0;
-	return max_abs <= tolerance;
+	return bad_c == 0 && max_abs <= tolerance;
 }
 
 std::vector<Performance> benchmark(const Problem& problem, Buffers& buffers, size_t n_runs, size_t warmup=3) {
