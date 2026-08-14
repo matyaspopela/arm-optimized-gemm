@@ -29,26 +29,7 @@ void gemm_naive_optim(	int M, int K, int N,
 
 		for (size_t k = 0; k < K; ++k) {
 			for (size_t j = 0; j < N; ++j) {
-				C[i * ldc + j] += alpha * (A[i * lda + j] * B[i * ldb + k]);
-			}
-		}
-	}
-
-
-
-
-
-
-	for (size_t i = 0; i < M; i++ ) {
-		for (size_t j = 0; j < N; j++ ) {
-			float sum = 0;
-			for (size_t k = 0; k < K; k++ ) {
-				sum += (A[i * lda + k] * B[k * ldb + j]);
-			}
-			if (beta == 0) {
-				C[i * ldc + j] = alpha * sum;
-			} else {
-				C[i * ldc + j] = alpha * sum + beta*C[i * ldc + j];
+				C[i * ldc + j] += alpha * (A[i * lda + k] * B[k * ldb + j]);
 			}
 		}
 	}
