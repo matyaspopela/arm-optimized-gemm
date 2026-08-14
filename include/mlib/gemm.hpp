@@ -3,16 +3,31 @@
 
 #pragma once
 
-//C = alpha * (A@B) + beta*C
-void gemm(	int M, int K, int N,
-			float alpha,
-			float* A, int lda,
-			float* B, int ldb,
-			float beta,
-			float* C, int ldc);
-// A.shape = M,K : blended in per alpha
-// B.shape = K,N ^^
 
-// C.shape = M,N : blended in per beta
+void gemm_naive(	int M, int K, int N,
+					float alpha,
+					float* A, int lda,
+					float* B, int ldb,
+					float beta,
+					float* C, int ldc);
+
+void gemm_naive_optim(	int M, int K, int N,
+					float alpha,
+					float* A, int lda,
+					float* B, int ldb,
+					float beta,
+					float* C, int ldc);
+
+
+using GemmFn = void (*) (	int M, int K, int N,
+							float alpha,
+							float* A, int lda,
+							float* B, int ldb,
+							float beta,
+							float* C, int ldc);
+
+inline constexpr GemmFn gemm = gemm_naive_optim;
+inline constexpr const char* gemm_name = "naive_optim";
+
 
 #endif //GEMM_KERNEL_ARM_GEMM_HPP

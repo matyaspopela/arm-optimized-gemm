@@ -16,7 +16,7 @@ public:
 	AlignedBuffer(size_t count, size_t alignment) {
 		size_t bytes = count * sizeof(float);
 		bytes = ((bytes + alignment - 1) / alignment) * alignment; //integer division makes it correct
-		p_ = static_cast<float*>(std::aligned_alloc(bytes, alignment));
+		p_ = static_cast<float*>(std::aligned_alloc(alignment, bytes));
 		n_ = count;
 	}
 
@@ -30,10 +30,11 @@ public:
 	}
 	AlignedBuffer& operator=(AlignedBuffer&& obj) noexcept {
 		if (&obj != this) {
+			std::free(p_); //free before reallocating
 			p_ = obj.p_;
 			n_ = obj.n_;
-			p_ = nullptr;
-			n_ = 0;
+			obj.p_ = nullptr;
+			obj.n_ = 0;
 		}
 		return *this; //dereference and return the object, not the ptr
 	}

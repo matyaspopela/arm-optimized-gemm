@@ -3,8 +3,15 @@ project(gemm_kernel_arm)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(gemm_kernel_arm main.cpp
-        include/mlib/gemm.hpp
-        kernels/_kern.cpp
-        eval/problem.hpp
-        eval/buffer.hpp)
+find_package(Eigen3 REQUIRED)
+
+add_executable(eval                 eval/problem.hpp
+                                    eval/buffer.hpp
+                                    eval/validate.cpp
+                                    kernels/gemm_naive.cpp
+                                    kernels/gemm_naive_optim.cpp)
+
+add_executable(microtests           scripts/microtests.cpp)
+
+
+target_link_libraries(eval PRIVATE Eigen3::Eigen)
