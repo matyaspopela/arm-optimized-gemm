@@ -18,6 +18,14 @@ void gemm_naive_optim(	int M, int K, int N,
 					float beta,
 					float* C, int ldc);
 
+void gemm_register_optim(	int M, int K, int N,
+							float alpha,
+							float* A, int lda,
+							float* B, int ldb,
+							float beta,
+							float* C, int ldc);
+
+
 
 using GemmFn = void (*) (	int M, int K, int N,
 							float alpha,
@@ -26,8 +34,8 @@ using GemmFn = void (*) (	int M, int K, int N,
 							float beta,
 							float* C, int ldc);
 
-inline constexpr GemmFn gemm = gemm_naive_optim;
-inline constexpr const char* gemm_name = "naive_optim";
+inline constexpr GemmFn gemm = gemm_register_optim;
+inline constexpr const char* gemm_name = "register_optim";
 
 
 #endif //GEMM_KERNEL_ARM_GEMM_HPP

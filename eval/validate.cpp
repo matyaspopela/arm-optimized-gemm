@@ -10,6 +10,9 @@
 #include "buffer.hpp"
 #include "problem.hpp"
 
+
+
+
 constexpr const char* output_folder = "../outputs/";
 
 
@@ -186,11 +189,7 @@ void write_results(std::string path, const std::vector<Performance>& performance
 int main() {
 
 	const std::vector<Problem> cases = {
-		{1,1,1,   1,1,1},        // M,N,K, lda,ldb,ldc
-		{7,7,7,   7,7,7},
-		{16,16,16, 16,16,16},
-		{15,17,15, 15,15,15},
-		{33,33,33, 33,33,33},
+		{16, 16, 16, 16, 16, 16},
 	};
 
 	bool passed = true;

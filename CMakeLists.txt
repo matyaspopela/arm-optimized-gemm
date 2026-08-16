@@ -9,7 +9,9 @@ add_executable(eval                 eval/problem.hpp
                                     eval/buffer.hpp
                                     eval/validate.cpp
                                     kernels/gemm_naive.cpp
-                                    kernels/gemm_naive_optim.cpp)
+                                    kernels/gemm_naive_optim.cpp
+                                    kernels/gemm_register_optim.cpp
+                                    kernels/micro_4x4.h)
 
 add_executable(microtests           scripts/microtests.cpp)
 
