@@ -33,10 +33,10 @@ static inline void micro_4x4(	int K, float alpha, float beta,
 		c30 += a3 * b0; c31 += a3 * b1; c32 += a3 * b2; c33 += a3 * b3;
 	}
 
-	C[0 * ldc + 0] = c00; C[0 * ldc + 1] = c01; C[0 * ldc + 2] = c02; C[0 * ldc + 3] = c03;
-	C[1 * ldc + 0] = c10; C[1 * ldc + 1] = c11; C[1 * ldc + 2] = c12; C[1 * ldc + 3] = c13;
-	C[2 * ldc + 0] = c20; C[2 * ldc + 1] = c21; C[2 * ldc + 2] = c22; C[2 * ldc + 3] = c23;
-	C[3 * ldc + 0] = c30; C[3 * ldc + 1] = c31; C[3 * ldc + 2] = c32; C[3 * ldc + 3] = c33;
+	C[0 * ldc + 0] = alpha * c00 + beta * C[0 * ldc + 0]; C[0 * ldc + 1] = alpha * c01 + beta * C[0 * ldc + 1]; C[0 * ldc + 2] = alpha * c02 + beta * C[0 * ldc + 2]; C[0 * ldc + 3] = alpha * c03 + beta * C[0 * ldc + 3];
+	C[1 * ldc + 0] = alpha * c10 + beta * C[1 * ldc + 0]; C[1 * ldc + 1] = alpha * c11 + beta * C[1 * ldc + 1]; C[1 * ldc + 2] = alpha * c12 + beta * C[1 * ldc + 2]; C[1 * ldc + 3] = alpha * c13 + beta * C[1 * ldc + 3];
+	C[2 * ldc + 0] = alpha * c20 + beta * C[2 * ldc + 0]; C[2 * ldc + 1] = alpha * c21 + beta * C[2 * ldc + 1]; C[2 * ldc + 2] = alpha * c22 + beta * C[2 * ldc + 2]; C[2 * ldc + 3] = alpha * c23 + beta * C[2 * ldc + 3];
+	C[3 * ldc + 0] = alpha * c30 + beta * C[3 * ldc + 0]; C[3 * ldc + 1] = alpha * c31 + beta * C[3 * ldc + 1]; C[3 * ldc + 2] = alpha * c32 + beta * C[3 * ldc + 2]; C[3 * ldc + 3] = alpha * c33 + beta * C[3 * ldc + 3];
 
 }
 
