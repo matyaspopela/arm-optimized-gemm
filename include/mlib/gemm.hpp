@@ -35,7 +35,7 @@ using GemmFn = void (*) (	int M, int K, int N,
 							float* C, int ldc);
 
 inline constexpr GemmFn gemm = gemm_register_optim;
-inline constexpr const char* gemm_name = "register_optim";
+inline constexpr const char* gemm_name = "register_simd_optim";
 
 
 #endif //GEMM_KERNEL_ARM_GEMM_HPP
