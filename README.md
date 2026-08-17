@@ -1,5 +1,7 @@
+GEMM learning project, currently at the cache blocking algorithm.
 
-TODO:
+Current GFLOPS/s : 48
+Eigen GFLOPS/S : 67
+target GFLOPS/S : ~80
 
-padding harness - will only do this in the actual lib (after all experiments and learning is done.)
-cache blocking - asap
+further optimizations are just tweaking the intrinsics loading stuff into caches and perhaps cache blocking settings.
