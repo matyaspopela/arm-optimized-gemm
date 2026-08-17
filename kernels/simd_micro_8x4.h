@@ -80,3 +80,4 @@ void simd_micro_8x4(	int Nr, int Kc, int Mr, float* B,
 }
 
 #endif //GEMM_KERNEL_ARM_SIMD_MICRO_8X4_H
+
