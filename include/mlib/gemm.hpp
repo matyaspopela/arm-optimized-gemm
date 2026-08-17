@@ -32,6 +32,13 @@ void gemm_packed_register_optim(	int M, int K, int N,
 									float beta,
 									float* C, int ldc);
 
+void gemm_cache_tiling(				int M, int K, int N,
+									float alpha,
+									float* A, int lda,
+									float* B, int ldb,
+									float beta,
+									float* C, int ldc);
+
 using GemmFn = void (*) (	int M, int K, int N,
 							float alpha,
 							float* A, int lda,
@@ -39,8 +46,8 @@ using GemmFn = void (*) (	int M, int K, int N,
 							float beta,
 							float* C, int ldc);
 
-inline constexpr GemmFn gemm = gemm_packed_register_optim;
-inline constexpr const char* gemm_name = "register_packed_simd_optim";
+inline constexpr GemmFn gemm = gemm_cache_tiling;
+inline constexpr const char* gemm_name = "cache_tiling_optim";
 
 
 #endif //GEMM_KERNEL_ARM_GEMM_HPP
