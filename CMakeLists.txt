@@ -18,6 +18,7 @@ add_executable(eval
         kernels/gemm_packed_register.cpp
         kernels/gemm_cache_tiling.cpp
         kernels/simd_micro_8x4.h
+        kernels/simd_micro_8x12.h
 )
 
 
