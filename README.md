@@ -1,8 +1,8 @@
 GEMM learning project, currently at the cache blocking algorithm.
 
-Current GFLOPS/s : 80
-Eigen GFLOPS/S : 67
-target GFLOPS/S : ~80
+Current GFLOPS/s : 80 \n
+Eigen GFLOPS/S : 67 \n
+target GFLOPS/S : ~80 \n
 
 
 Beat Eigen on single thread performance.
