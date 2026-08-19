@@ -1,11 +1,13 @@
+#ifndef GEMM_KERNEL_ARM_GEMM_H
+#define GEMM_KERNEL_ARM_GEMM_H
+
 #include <stdexcept>
 #include <arm_neon.h>
 #include <cstddef>
 #include <vector>
 #include <algorithm>
 
-#include "simd_micro_8x4.h"
-#include "simd_micro_8x12.h"
+#include "_microkernel_8x12.h"
 
 // at packing point Bp is (Kc, Nc)
 static inline void pack_B(int Kc, int Nc, int Nr, const float* B, int ldb, float* out) {
@@ -62,17 +64,17 @@ static inline void pack_A(int Mc, int Kc, int Mr, int curMr, float* A, int lda, 
     }
 }
 
-void gemm_cache_tiling( int M, int K, int N,
-                   float alpha,
-                   float* A, int lda,
-                   float* B, int ldb,
-                   float beta,
-                   float* C, int ldc) {
+inline void gemm(			   int M, int K, int N,
+			                   float alpha,
+			                   float* A, int lda,
+			                   float* B, int ldb,
+			                   float beta,
+			                   float* C, int ldc) {
 
     // block size params
-    size_t Nc = 240 * 4;
-    size_t Kc = 256 * 4;
-    size_t Mc = 256 * 2;
+    size_t Nc = 240;
+    size_t Kc = 256;
+    size_t Mc = 256;
     size_t Nr = 12;
     size_t Mr = 8;
 
@@ -111,7 +113,7 @@ void gemm_cache_tiling( int M, int K, int N,
                    float* ptr_A = packed_A + m * curKc;
                    float* ptr_C = &C[m*ldc + k*ldc + l + i];
 
-                   simd_micro_8x12(curNr, curKc, curMr, ptr_B, ptr_A, ptr_C, ldc, is_first_k_block);
+                   _microkernel_8x12(curNr, curKc, curMr, ptr_B, ptr_A, ptr_C, ldc, is_first_k_block);
 
                 }
              }
@@ -119,3 +121,6 @@ void gemm_cache_tiling( int M, int K, int N,
        }
     }
 }
+
+
+#endif //GEMM_KERNEL_ARM_GEMM_H

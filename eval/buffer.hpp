@@ -15,7 +15,7 @@ public:
 	AlignedBuffer() = default;
 	AlignedBuffer(size_t count, size_t alignment) {
 		size_t bytes = count * sizeof(float);
-		bytes = ((bytes + alignment - 1) / alignment) * alignment; //integer division makes it correct
+		bytes = ((bytes + alignment - 1) / alignment) * alignment; //integer division rounds up.
 		p_ = static_cast<float*>(std::aligned_alloc(alignment, bytes));
 		n_ = count;
 	}
