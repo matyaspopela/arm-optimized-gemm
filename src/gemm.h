@@ -65,16 +65,14 @@ static inline void pack_A(int Mc, int Kc, int Mr, int curMr, float* A, int lda, 
 }
 
 inline void gemm(			   int M, int K, int N,
-			                   float alpha,
 			                   float* A, int lda,
-			                   float* B, int ldb,
-			                   float beta,
+			                   float* const B, int ldb,
 			                   float* C, int ldc) {
 
     // block size params
-    size_t Nc = 240;
-    size_t Kc = 256;
-    size_t Mc = 256;
+    size_t Nc = 240 * 4;
+    size_t Kc = 256 * 4;
+    size_t Mc = 256 * 2;
     size_t Nr = 12;
     size_t Mr = 8;
 

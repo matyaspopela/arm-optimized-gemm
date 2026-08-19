@@ -213,7 +213,7 @@ int main() {
 	std::cout<<"Passed: "<< passed <<std::endl;
 
 
-	Problem time_benchmark = {2048, 2048, 2048, 2048, 2048, 2048};
+	Problem time_benchmark = {2048 * 2, 2048 * 2, 2048 * 2, 2048 * 2, 2048 * 2, 2048 * 2};
 
 	Buffers buffers = assign_buffers(time_benchmark, 64);
 	size_t warmup = 2;

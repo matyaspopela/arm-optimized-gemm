@@ -70,7 +70,7 @@ void gemm_cache_tiling( int M, int K, int N,
                    float* C, int ldc) {
 
     // block size params
-    size_t Nc = 240 * 4;
+    size_t Nc = 240 * 6;
     size_t Kc = 256 * 4;
     size_t Mc = 256 * 2;
     size_t Nr = 12;

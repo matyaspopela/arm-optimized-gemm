@@ -21,8 +21,18 @@ add_executable(eval
         kernels/simd_micro_8x12.h
 )
 
+add_executable(lib
+        src/_microkernel_8x12.h
+        src/buffer.h
+        src/gemm.h
+        src/Matrix.h
+        src/eval.cpp
+
+)
+
 
 add_executable(microtests           scripts/microtests.cpp)
 
 
 target_link_libraries(eval PRIVATE Eigen3::Eigen)
+target_link_libraries(lib PRIVATE Eigen3::Eigen)

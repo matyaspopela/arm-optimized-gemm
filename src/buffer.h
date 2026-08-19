@@ -8,10 +8,10 @@ class AlignedBuffer {
 public:
 	AlignedBuffer() = default;
 	AlignedBuffer(const size_t& size, const size_t& alignment) {
-		size_t bytes = count * sizeof(float);
+		size_t bytes = size * sizeof(float);
 		bytes = (( bytes + alignment - 1 ) / alignment ) * alignment; // integer division rounds up
 		_p = static_cast<float*>(std::aligned_alloc(alignment, bytes));
-		_n = count;
+		_n = size;
 	}
 
 	~AlignedBuffer() { std::free(_p); }
@@ -32,6 +32,14 @@ public:
 			obj._n = 0;
 		}
 		return *this;
+	}
+
+	float* data() {
+		return _p;
+	}
+
+	const float* data() const {
+		return _p;
 	}
 
 private:

@@ -46,8 +46,8 @@ using GemmFn = void (*) (	int M, int K, int N,
 							float beta,
 							float* C, int ldc);
 
-inline constexpr GemmFn gemm = gemm_cache_tiling;
-inline constexpr const char* gemm_name = "cache_tiling_optim";
+inline constexpr GemmFn gemm = gemm_naive;
+inline constexpr const char* gemm_name = "naive_baseline";
 
 
 #endif //GEMM_KERNEL_ARM_GEMM_HPP
