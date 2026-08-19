@@ -11,11 +11,11 @@ Also learned what SIMD is and how to use it.
 I wanted to beat Eigen, and I did so Im happy bout that. 
 I do acknowledge that if i spent more time tailoring Eigen itself for my architecture it probably would have performed better, but i just stuck to vanilla performance.
 
-Current GFLOPS/s : 104
+Current my GFLOPS/s : 104
 
-Eigen GFLOPS/S : 67 
+Current Eigen GFLOPS/S : 67 
 
-target GFLOPS/S : ~80 
+Original target GFLOPS/S : ~80 
 
 
 Beat Eigen on single thread performance.
