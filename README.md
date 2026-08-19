@@ -1,6 +1,6 @@
 # GEMM learning project
 
-In this project I built a from-scratch GEMM algorithm specifically tailored for my (quite unconventional) orion CPU cache sizes and ARM SIMD.
+In this project I built a from-scratch GEMM algorithm specifically tailored for my (quite unconventional) orion CPU.
 I learned a lot about how the bottleneck of this algorithm (and many others) isn't really the arithmetic operations but the low arithmetic density - 
 moving a lot of data very inefficiently, starving ALU's.
 
