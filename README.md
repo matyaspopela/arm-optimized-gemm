@@ -13,7 +13,7 @@ I do acknowledge that if i spent more time tailoring Eigen itself for my archite
 
 Current my GFLOPS/s : 104
 
-Current Eigen GFLOPS/S : 67 
+Current Eigen GFLOPS/S : 67 - 74
 
 Original target GFLOPS/S : ~80 
 
