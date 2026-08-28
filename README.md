@@ -19,4 +19,4 @@ Original target GFLOPS/S : ~80
 
 
 Beat Eigen on single thread performance.
-Theoretical multi thread performance is ~633 GFLOPS/s, maybe i'll try doing that one day idk.
+Theoretical multi thread performance on my cpu is ~633 GFLOPS/s, maybe i'll try doing that one day idk.
