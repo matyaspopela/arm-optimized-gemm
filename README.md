@@ -1,4 +1,5 @@
 # GEMM learning project
+*final code placed in `src/`, different versions and progress placed in `kernels/`*
 
 In this project I built a from-scratch GEMM algorithm specifically tailored for my (quite unconventional) orion CPU.
 I learned a lot about how the bottleneck of this algorithm (and many others) isn't really the arithmetic operations but the low arithmetic density - 
